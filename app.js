@@ -5,12 +5,12 @@ const cors = require("cors");
 const initDatabase = require("./config/init");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 initDatabase();
 
 app.use(cors({
-  origin: "*", // tu peux restreindre à ton front ex: "http://localhost:5173"
+  origin: "*", 
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
@@ -52,6 +52,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(PORT, () => {
-  console.log(`\n Initialisation terminée !`);
   console.log(` Serveur lancé sur http://localhost:${PORT}`);
 });

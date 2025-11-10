@@ -2,7 +2,6 @@ const db = require('../config/db');
 const bcrypt = require('bcrypt');
 
 class User {
-  // Créer un utilisateur
   static create({ pseudo, email, password }, callback) {
     const hashedPassword = bcrypt.hashSync(password, 10);
     
@@ -16,7 +15,6 @@ class User {
     );
   }
 
-  // Trouver par pseudo ou email
   static findByLogin(login, callback) {
     db.get(
       'SELECT * FROM users WHERE pseudo = ? OR email = ?',
@@ -25,7 +23,6 @@ class User {
     );
   }
 
-  // Trouver par ID
   static findById(id, callback) {
     db.get(
       'SELECT id, pseudo, email, created_at FROM users WHERE id = ?',
@@ -34,7 +31,6 @@ class User {
     );
   }
 
-  // Vérifier si pseudo existe
   static pseudoExists(pseudo, callback) {
     db.get(
       'SELECT id FROM users WHERE pseudo = ?',
@@ -46,7 +42,6 @@ class User {
     );
   }
 
-  // Vérifier si email existe
   static emailExists(email, callback) {
     db.get(
       'SELECT id FROM users WHERE email = ?',
@@ -58,7 +53,6 @@ class User {
     );
   }
 
-  // Comparer les mots de passe
   static comparePassword(plainPassword, hashedPassword) {
     return bcrypt.compareSync(plainPassword, hashedPassword);
   }

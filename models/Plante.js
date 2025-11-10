@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
 class Plante {
-  // Créer une plante
   static create({ user_id, nom, description, photo, lieu, date_semis, date_arrosage }, callback) {
     db.run(
       `INSERT INTO plantes (user_id, nom, description, photo, lieu, date_semis, date_arrosage) 
@@ -14,7 +13,6 @@ class Plante {
     );
   }
 
-  // Récupérer toutes les plantes d'un utilisateur
   static findByUserId(user_id, callback) {
     db.all(
       'SELECT * FROM plantes WHERE user_id = ? ORDER BY created_at DESC',
@@ -23,7 +21,6 @@ class Plante {
     );
   }
 
-  // Récupérer une plante
   static findOne(id, user_id, callback) {
     db.get(
       'SELECT * FROM plantes WHERE id = ? AND user_id = ?',
@@ -32,7 +29,6 @@ class Plante {
     );
   }
 
-  // Mettre à jour une plante
   static update(id, user_id, data, callback) {
     const { nom, description, photo, lieu, date_semis, date_arrosage } = data;
     
@@ -48,7 +44,6 @@ class Plante {
     );
   }
 
-  // Supprimer une plante
   static delete(id, user_id, callback) {
     db.run(
       'DELETE FROM plantes WHERE id = ? AND user_id = ?',

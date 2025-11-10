@@ -2,7 +2,6 @@ const db = require('./db');
 
 
 function initDatabase() {
-  console.log('Initialisation de la base de données...');
 
   // Table users
   db.run(`
@@ -42,8 +41,6 @@ function initDatabase() {
       console.log('Table plantes prête');
     }
   });
-
-  console.log('Initialisation terminée !');
 }
 
 module.exports = initDatabase;
